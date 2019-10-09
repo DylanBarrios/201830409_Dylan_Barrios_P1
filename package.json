@@ -8,5 +8,8 @@
     "start": "node src"
   },
   "author": "Dylan",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
 }
