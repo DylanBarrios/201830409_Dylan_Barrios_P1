@@ -1,20 +1,22 @@
-//imports
-const path  = require('path');
+//imports 
+const path = require('path');
 const express = require('express');
 const app = express();
 
-//configuracion del puerto
+var exec = require('child_process').exec;
+
+app.use(express.static(path.join(__dirname,'public')));
+
+//configuración 
 app.set('view engine', 'ejs');
-app.set('views',path.join(__dirname,'views'));
-app.set('port',3000);
+app.set('port', 3000);
+app.set('views', path.join(__dirname, 'views'));
 
-//Agregar las rutas
-app.get('/',(req,res) => {
-    res.render('index');
-});
+//rutas
+app.use(require('./routes/index.js'));
 
 
-//escucha del puerto
+//escucha
 app.listen(app.get('port'), () => {
-    console.log('escuchando en el puerto', app.get('port'));
+    console.log('escuchando en el puerto ', app.get('port'));
 });
