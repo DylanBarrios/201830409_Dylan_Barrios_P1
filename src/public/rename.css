@@ -1,0 +1,55 @@
+body{
+	background: rgb(195, 195, 216);
+	margin: 0;
+	padding: 0;
+}
+.contenetor-div{
+	height: 200px;
+	width: 99%;
+}
+
+h1{
+	
+	font: italic bold 40px/30px Georgia, serif;
+}
+.analizar{
+	width: 330px;
+	
+	margin: auto;
+	
+}
+.analizar input{
+	margin-left: 50px;
+
+}
+tr, td{
+	border: 1px solid black;
+}
+.analizar button{
+	display: inline-flex;
+
+	margin-left: 10px;
+}
+#texto{
+	background: none;
+	border-radius: 12px;
+	height: 35px;
+	border: 2px solid rgb(30, 30, 94);
+}
+table{
+	width: 400px;
+	margin: auto;
+	border: 1px solid gray;
+}
+th{
+	text-align: center;
+	border: 1px solid gray;
+	color: white;
+	background: rgb(100, 30, 30);
+
+}
+.cargar-archivo{
+	width: 400px;
+
+	margin: auto;
+}

@@ -1,0 +1,60 @@
+.cargar-archivo{
+   width: 90%;
+    margin: auto;
+ 
+}
+.cargar-archivo input {
+    
+    margin-left: 40%;
+}
+.cargar-archivo button{
+    display: inline;
+    margin: 5px 5px;
+   
+   
+}
+.cargar-archivo div{
+  
+    width: 300px;
+    margin: auto;
+}
+.ContentTabla{
+    width: 90%;
+    margin: auto;
+}
+.prueba{
+    width: 70%;
+    margin: auto;
+}
+.prueba div{
+
+    display: inline-flex;
+    padding: 10px 10px;
+   
+}
+table{
+	width: 400px;
+	margin: auto;
+	border: 1px solid gray;
+}
+.prueba #div1{
+
+width: 500px;
+max-width: 500px;
+}
+th{
+	text-align: center;
+	border: 1px solid gray;
+	color: white;
+	background: rgb(100, 30, 30);
+
+}
+.prueba #div2{
+    background: rgb(229, 229, 226);
+    color: black;
+    border: 1px solid black;
+   
+    width: 400px;
+max-width: 400px;
+
+}
