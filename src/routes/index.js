@@ -17,4 +17,9 @@ router.get('/Perfil', (req, res) => {                                   //Muestr
     
 });
 
+router.get('/diagramas', (req, res) => {                                //Muestra mis datos
+    res.render('./diagramas.ejs', { max: 15 });
+    
+});
+
 module.exports = router;

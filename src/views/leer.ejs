@@ -15,20 +15,17 @@
 
 <body>
   <header>
-    <% include html/nav.html%>
+    <% include html/nav.html%>                                                  <!--Se agrega la barra de navegacion-->
   </header>
   <br>
   <div class="cargar-archivo">
-    <form name="myForm">
-      <input name="myInput" type="file">
+    <form name="myForm">  
+      <input name="myInput" type="file">                                        <!--Boton para subir archivos -->
     </form>
     <br>
     <div>
-
-
-      <button class="button " id="postButton">Analizar linea</button>
-
-      <button class="button " id="getButton">Obtener Token</button>
+      <button class="button " id="postButton">Analizar palabra</button>           <!--Boton para pedir la siguiente palabra -->
+      <button class="button " id="getButton">Obtener Token</button>               <!--Obtiene la palabra ya analizada desde el backend -->
     </div>
   </div>
   <br>
@@ -38,7 +35,7 @@
       <table id="historial">
         <thead>
           <tr>
-            <th>Palabra ingresada</th>
+            <th>Palabra ingresada</th>                                             <!--Tabla para clasificar los tokens obtenidos -->
             <th> tipo token</th>
             <th> linea</th>
           </tr>
@@ -54,7 +51,7 @@
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <script src="archivos.js"></script>
+  <script src="archivos.js"></script>                                               <!--Llama al script que manipula el archivo que se analizara -->
 
 </body>
 
