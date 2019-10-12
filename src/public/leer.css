@@ -35,7 +35,7 @@
 table{
 	width: 400px;
 	margin: auto;
-	border: 1px solid gray;
+	border: 1px solid rgb(78, 32, 74);
 }
 .prueba #div1{
 
@@ -46,7 +46,7 @@ th{
 	text-align: center;
 	border: 1px solid gray;
 	color: white;
-	background: rgb(100, 30, 30);
+	background: rgb(41, 25, 134);
 
 }
 .prueba #div2{
@@ -57,4 +57,8 @@ th{
     width: 400px;
 max-width: 400px;
 
+}
+
+body{
+    background: rgb(78, 32, 74);   
 }

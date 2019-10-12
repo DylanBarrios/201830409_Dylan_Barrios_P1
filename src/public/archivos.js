@@ -21,7 +21,6 @@ function onChange(event) {
   reader.onload = onLoad;                                                       //Lee el texto con la variable anterior
 }
 
-
 var array = [];                                                                 //Variable para almacenar los datos del archivo leido
 
 function onLoad() {
@@ -65,9 +64,9 @@ const sendData = () => {                                                        
     tmp = 'vacio';
   }
 
+
   axios.post('http://localhost:3000/postusers', {                               //Envia la palabra al servidor con la ruta /postusers
-    firstName: 'Dylan',
-    lastName: 'garcia',
+    
     text: tmp
   }, {
     'Content-Type': 'application/json'
@@ -81,14 +80,14 @@ const sendData = () => {                                                        
   count++;
 };
 
-const getData = () => {                                                         //Metodo para obtener el token de la letra enviada 
+const getData = () => {                                                    
   axios.get(url).then(response => {
 
     if (tmp != 'vacio') {
       var htmlTexto = "<tr>" + "<td>" + tmp + "</td>" + "<td style=" +          
                       "color:gray" + ">" + response.data.carne + "</td><td>" 
                       + count + "</td></tr>";                                 
-      datos.innerHTML = datos.innerHTML + htmlTexto;                             //Agregar a la tabla de tokens la palabra
+      datos.innerHTML = datos.innerHTML + htmlTexto;                            
 
     }
   })

@@ -5,8 +5,8 @@ const path = require('path');
 // variables
 let bolean=true;  
 let tipo;
-// analizar palabra
 
+// analizar palabra
 var arrayObjeto=[];
 
 // ruta que recibe la letra
@@ -240,14 +240,8 @@ function detectarPalabra(textoTxt) {
             }
         }  
     }
-    
-
-
 return tipoLetra;
 }
-
-
-
 
 // metodo para obtener el token
 router.get('/users', (req, res) => {
@@ -262,16 +256,4 @@ router.get('/users', (req, res) => {
 
 });
 
-// metodo para el reporte final
-router.get('/users2', (req, res) => {
-  
-    setTimeout(() => {
-        res.status(200).json({
-            usurio: 'Jhonny',
-            // enviar un objeto con atributos del tipo y letra
-            obj: arrayObjeto
-        });
-    }, 500);
-
-});
 module.exports = router;
