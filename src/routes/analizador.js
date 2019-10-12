@@ -28,7 +28,7 @@ function automata(textoA) {                                                     
     var count = 0;
 
     var estados = [];                                                                    //Almacena el estado al que se  movio el automata     
-    arrayEstador.push('A');                                                                 //Inicia en A
+    estados.push('A');                                                                 //Inicia en A
 
 
     while (count < aux.length) {                                                            //Se ejecutara hasta que el contador sea igual a la longitud de la palabra 
@@ -81,7 +81,7 @@ function automata(textoA) {                                                     
 
                 break;
 
-            case 'LETRA':                                                                   //Evalua si es una letra y de ser asi hace un nuevo push para cambiar de estado
+            case 'LETRA':                                                             //Evalua si es una letra y de ser asi hace un nuevo push para cambiar de estado
                 if (estados[count] == 'A') {
                     estados.push('F');
                 }
@@ -162,7 +162,7 @@ function detectarPalabra(textoTxt) {                                            
 
 
     if (validar) {                                                                        //Revisa si el caracter enviado es un signo
-        for (var i = 0; i < arraySigno.length; i++) {
+        for (var i = 0; i < signos.length; i++) {
             if (textoTxt == signos[i]) {
                 tipoLetra = "SIGNO";
                 validar = false;
