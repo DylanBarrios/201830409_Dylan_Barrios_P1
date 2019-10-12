@@ -1,5 +1,5 @@
 body{
-	background: rgb(195, 195, 216);
+	background: rgb(0,0,0);
 	margin: 0;
 	padding: 0;
 }
@@ -8,10 +8,17 @@ body{
 	width: 99%;
 }
 
-h1{
-	
+h1, h2{
+	text-align: center;
 	font: italic bold 40px/30px Georgia, serif;
+	color: aliceblue;
 }
+
+.center{
+	text-align: center;
+}
+
+
 .analizar{
 	width: 330px;
 	
@@ -21,14 +28,6 @@ h1{
 .analizar input{
 	margin-left: 50px;
 
-}
-tr, td{
-	border: 1px solid black;
-}
-.analizar button{
-	display: inline-flex;
-
-	margin-left: 10px;
 }
 #texto{
 	background: none;

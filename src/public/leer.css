@@ -4,28 +4,29 @@
  
 }
 .cargar-archivo input {
-    
+    color: white;
     margin-left: 40%;
 }
 .cargar-archivo button{
     display: inline;
-    margin: 5px 5px;
-   
-   
+    margin: 5px 5px;  
 }
 .cargar-archivo div{
   
     width: 300px;
     margin: auto;
 }
+
 .ContentTabla{
     width: 90%;
     margin: auto;
 }
+
 .prueba{
     width: 70%;
     margin: auto;
 }
+
 .prueba div{
 
     display: inline-flex;
@@ -37,6 +38,12 @@ table{
 	margin: auto;
 	border: 1px solid rgb(78, 32, 74);
 }
+
+tbody{
+    color: aliceblue;
+}
+
+
 .prueba #div1{
 
 width: 500px;
@@ -44,7 +51,6 @@ max-width: 500px;
 }
 th{
 	text-align: center;
-	border: 1px solid gray;
 	color: white;
 	background: rgb(41, 25, 134);
 
@@ -60,5 +66,5 @@ max-width: 400px;
 }
 
 body{
-    background: rgb(78, 32, 74);   
+    background-image: url("https://i.stack.imgur.com/FsY6H.jpg");
 }

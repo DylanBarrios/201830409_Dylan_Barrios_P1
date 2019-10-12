@@ -2,245 +2,207 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 const path = require('path');
-// variables
-let bolean=true;  
+
+let bolean = true;
 let tipo;
 
-// analizar palabra
-var arrayObjeto=[];
+var arrayObjeto = [];                                                                         //Alamacena la palabra que le envian 
 
-// ruta que recibe la letra
-router.post('/postusers', (req, res) => {
-   
-console.log(arrayObjeto[0]);
 
-    bolean=true;
-    tipo="ERROR";
-    // obtener palabra que se envio del cliente
-const palabra= req.body.text;
-// funcion
-automata(palabra);
+router.post('/postusers', (req, res) => {                                                   //Ruta a la que fue enviada la palabras
 
-res.status(200).send('wrong');
+    bolean = true;
+    tipo = "ERROR";
+
+    const palabra = req.body.text;                                                               //Variable que recibe la palabra que le mandaron 
+
+    automata(palabra);                                                                          //Llama al metodo que analiza la palabra
+
+    res.status(200).send('wrong');
 });
-// automata
-function automata(textoA){
-    // letra obtenida
-    var aux=textoA.split("");
-    //contador
-    var count=0;
-    //array de estador
-    var arrayEstador=[];
-    arrayEstador.push('A');
-    
 
-    while(count<aux.length){
 
-        // switch de movimientos de estados
+function automata(textoA) {                                                                   // funcion para obtener la expresion con que se movera en el automata
+    var aux = textoA.split("");                                                               //Se separa la palabra obtenida en letras
+
+    var count = 0;
+
+    var estados = [];                                                                    //Almacena el estado al que se  movio el automata     
+    arrayEstador.push('A');                                                                 //Inicia en A
+
+
+    while (count < aux.length) {                                                            //Se ejecutara hasta que el contador sea igual a la longitud de la palabra 
+        //Que le envian
+
         switch (detectarPalabra(aux[count])) {
-            case 'OP':
-                
-                if(arrayEstador[count]=='A'){
-                   
-                    arrayEstador.push('B');
+            case 'OPERADOR':                                                                //Evalua si es un operdaor y de ser asi hace un nuevo push para cambiar de estado
+
+                if (estados[count] == 'A') {
+
+                    estados.push('B');
                 }
-              
-            break;
-
-            case 'SIG':
-                    if(arrayEstador[count]=='A'){
-                   
-                        arrayEstador.push('C');
-                    }
-            break;
-
-            case 'AG': 
-            if(arrayEstador[count]=='A'){
-                arrayEstador.push('D');
-            }
 
                 break;
 
-            case 'DIG':
-                    if(arrayEstador[count]=='G' ||arrayEstador[count]=='A'  ){
-                        arrayEstador.push('G');
-                    }
-                    if(arrayEstador[count]=='H' ){
-                        arrayEstador.push('L');
-                    }
-                    if(arrayEstador[count]=='L' ){
-                        arrayEstador.push('L');
-                    }
-                    if(arrayEstador[count]=='F' ){
-                        arrayEstador.push('I');
-                    }
-                    if(arrayEstador[count]=='I' ){
-                        arrayEstador.push('M');
-                    }
-                    if(arrayEstador[count]=='M' ){
-                        arrayEstador.push('M');
-                    }
-                   
-                    
+            case 'SIGNO':                                                                   //Evalua si es un signp y de ser asi hace un nuevo push para cambiar de estado
+                if (estados[count] == 'A') {
+
+                    estados.push('C');
+                }
                 break;
 
-             case 'P':
-                    if(arrayEstador[count]=='G' ){
-                        arrayEstador.push('H');
-                    }
-                break; 
+            case 'AGRUPACION':                                                              //Evalua si es un agrupacion y de ser asi hace un nuevo push para cambiar de estado
+                if (estados[count] == 'A') {
+                    estados.push('D');
+                }
 
-                case 'CERO':
-                        if(arrayEstador[count]=='F' ){
-                            arrayEstador.push('J');
-                        }
-                        if(arrayEstador[count]=='J' ){
-                            arrayEstador.push('M');
-                        }
-                    break; 
-              
+                break;
 
-            case 'LE':
-                    if(arrayEstador[count]=='A'  ){
-                        arrayEstador.push('F');
-                    }
-                    if(arrayEstador[count]=='F'  ){
-                        arrayEstador.push('K');
-                    }
-                    if(arrayEstador[count]=='K'  ){
-                        arrayEstador.push('O');
-                    }
-                    if(arrayEstador[count]=='O'  ){
-                        arrayEstador.push('O');
-                    }
+            case 'DIGITO':                                                                  //Evalua si es un digito y de ser asi hace un nuevo push para cambiar de estado
+                if (estados[count] == 'G' || estados[count] == 'A') {
+                    estados.push('G');
+                }
+                if (estados[count] == 'H') {
+                    estados.push('L');
+                }
+                if (estados[count] == 'L') {
+                    estados.push('L');
+                }
+                if (estados[count] == 'F') {
+                    estados.push('I');
+                }
+                if (estados[count] == 'I') {
+                    estados.push('M');
+                }
+                if (estados[count] == 'M') {
+                    estados.push('M');
+                }
 
-                 break;
 
-            
+                break;
+
+            case 'LETRA':                                                                   //Evalua si es una letra y de ser asi hace un nuevo push para cambiar de estado
+                if (estados[count] == 'A') {
+                    estados.push('F');
+                }
+                if (estados[count] == 'F') {
+                    estados.push('K');
+                }
+                if (estados[count] == 'K') {
+                    estados.push('O');
+                }
+                if (estados[count] == 'O') {
+                    estados.push('O');
+                }
+
+                break;
+
+
         }
-      count++;
+        count++;
     }
 
-    //almacenar estado final
-    var varTmp=arrayEstador[aux.length];
-    // verificar
-    if(arrayEstador.length=aux.length){
-//estados de aceptacion
-        const aceptacion=['B','C','D','G','L','J','O','M'];
-        for(var i=0; i<aceptacion.length;i++){
+    var varTmp = estados[aux.length];                                          //Alamacena en una variable el ultimo estado que hizo push a los estados
+    
+    if (estados.length = aux.length) {
+        //estados de aceptacion
+        const aceptacion = ['B', 'C', 'D', 'G', 'L', 'J', 'O', 'M'];
+        for (var i = 0; i < aceptacion.length; i++) {
             // comparar estado final con alguno de aceptacion
-         if(varTmp==aceptacion[i]){
-            if(varTmp=='B'){
-                tipo='Operador';
-            }else if(varTmp=='C'){
-                tipo='Signo';
-            }else if(varTmp=='D'){
-                tipo='Agrupacion';
-            }else if(varTmp=='G'){
-                tipo='Numero';
-            }else if(varTmp=='L'){
-                tipo='Flotante';
-            }else if(varTmp=='J' || varTmp=='O' ||varTmp=='M' )
-            {
-                if(textoA=='VERDADERO' || textoA=='FALSO')
-                tipo='Booleano';
-                else tipo='Identificador';
+            if (varTmp == aceptacion[i]) {
+                if (varTmp == 'B') {
+                    tipo = 'Operador';
+                } else if (varTmp == 'C') {
+                    tipo = 'Signo';
+                } else if (varTmp == 'D') {
+                    tipo = 'Agrupacion';
+                } else if (varTmp == 'G') {
+                    tipo = 'Numero';
+                } else if (varTmp == 'L') {
+                    tipo = 'Flotante';
+                } else if (varTmp == 'J' || varTmp == 'O' || varTmp == 'M') {
+                    if (textoA == 'VERDADERO' || textoA == 'FALSO')
+                        tipo = 'Booleano';
+                    else tipo = 'Identificador';
+                }
+
+                var objeto = new Object();
+                objeto.palabra = textoA;
+                objeto.tipo = tipo;
+                arrayObjeto.push(objeto);
+
+                break;
             }
 
-            var objeto=new Object();
-            objeto.palabra=textoA;
-            objeto.tipo=tipo;
-            arrayObjeto.push(objeto);
-            
-             break;
-         }
-   
 
         }
 
     }
 
 }
-// funcion para obtener la expresion con que se movera en el automata
-function detectarPalabra(textoTxt) {
-    // Globales
-    const array= ['+', '-', '*', '/', '%', '=','==','<','>','>=','<='];
-    var tipoLetra="";
-    var validar=true;
-    // cero
-    if(validar){
-        if(textoTxt=="0"){
-             tipoLetra="CERO";
-             validar=false;
-            
-         }
-       
- }
-    // para operador
-    for(var i=0; i<array.length;i++){
-        if(textoTxt==array[i]){
-            tipoLetra="OP";
-            validar=false;
+
+function detectarPalabra(textoTxt) {                                                    //Fucion que revisa que tipo de caracter fue enviado al separar la palabra
+
+    const operadores = ['+', '-', '*', '/', '%', '=', '==', '<', '>', '>=', '<='];
+    const signos = ['"', ';'];
+    const agrupaciones = ['(', ')', '{', '}'];
+    const numeros = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+    const letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    var tipoLetra = "";
+    var validar = true;
+
+
+    for (var i = 0; i < operadores.length; i++) {                                              //Revisa si el caracter enviado pertenece al array de operadores
+        if (textoTxt == operadores[i]) {
+            tipoLetra = "OPERADOR";
+            validar = false;
             break;
         }
+    }
+
+
+    if (validar) {                                                                        //Revisa si el caracter enviado es un signo
+        for (var i = 0; i < arraySigno.length; i++) {
+            if (textoTxt == signos[i]) {
+                tipoLetra = "SIGNO";
+                validar = false;
+                break;
+            }
         }
-    // signo
-    if(validar){
-        const arraySigno= ['"', ';'];
-        for(var i=0; i<arraySigno.length;i++){
-            if(textoTxt==arraySigno[i]){
-                tipoLetra="SIG";
-                validar=false;
-                break;
-            }
-        }  
-    }   
-    // agrupacion
-    if(validar){
-        const arrayAgrupacion= ['(', ')', '{', '}'];
-        for(var i=0; i<arrayAgrupacion.length;i++){
-            if(textoTxt==arrayAgrupacion[i]){
-                tipoLetra="AG";
-                validar=false;
-                break;
-            }
-        }  
-    }   
-    //digito
-    if(validar){
-        const arrayNumero=['1','2','3','4','5','6','7','8','9','0'];
-        for(var i=0; i<arrayNumero.length;i++){
-            if(textoTxt==arrayNumero[i]){
-                tipoLetra="DIG";
-                validar=false;
-                break;
-            }
-        }  
     }
-    // punto
-    if(validar){
-           if(textoTxt=="."){
-                tipoLetra="P";
-                validar=false;
-               
+
+    if (validar) {
+        for (var i = 0; i < agrupaciones.length; i++) {                                     //Revisa si el caracter enviado pertenece al array de agupaciones
+            if (textoTxt == agrupaciones[i]) {
+                tipoLetra = "AGRUPACION";
+                validar = false;
+                break;
             }
-          
-    } 
+        }
+    }
+
+    if (validar) {
+        for (var i = 0; i < numeros.length; i++) {                                         //Revisa si el caracter enviado pertenece al array de numeros
+            if (textoTxt == numeros[i]) {
+                tipoLetra = "DIGITO";
+                validar = false;
+                break;
+            }
+        }
+    }
+
     //letra
-    if(validar){
-        const arrayLetra=['a','b','c','d','e','f','g','h','i',
-        'j','k','l','m','n','ñ','o','p','q','r',
-        's','t','u','v','w','x','y','z'];
-        var tmporal=textoTxt.toLowerCase();
-        for(var i=0; i<arrayLetra.length;i++){
-            if(tmporal==arrayLetra[i]){
-                tipoLetra="LE";
-                validar=false;
+    if (validar) {
+        var tmporal = textoTxt.toLowerCase();                                             //Convierte las letras revibidas en minusculas para que eso no afecte 
+        for (var i = 0; i < letras.length; i++) {                                              //Revisa si el caracter enviado pertenece al array de letras
+            if (tmporal == letras[i]) {
+                tipoLetra = "LETRA";
+                validar = false;
                 break;
             }
-        }  
+        }
     }
-return tipoLetra;
+    return tipoLetra;
 }
 
 // metodo para obtener el token
