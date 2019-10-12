@@ -105,11 +105,11 @@ function automata(textoA) {                                                     
     var varTmp = estados[aux.length];                                          //Alamacena en una variable el ultimo estado que hizo push a los estados
     
     if (estados.length = aux.length) {
-        //estados de aceptacion
-        const aceptacion = ['B', 'C', 'D', 'G', 'L', 'J', 'O', 'M'];
+                                                                                
+        const aceptacion = ['B', 'C', 'D', 'F','G', 'k','L', 'J', 'O', 'M'];                            //Array con los estados de aceptacion
         for (var i = 0; i < aceptacion.length; i++) {
-            // comparar estado final con alguno de aceptacion
-            if (varTmp == aceptacion[i]) {
+            
+            if (varTmp == aceptacion[i]) {                                      //Revisa si el estado final es de aceptacion
                 if (varTmp == 'B') {
                     tipo = 'Operador';
                 } else if (varTmp == 'C') {
@@ -120,7 +120,7 @@ function automata(textoA) {                                                     
                     tipo = 'Numero';
                 } else if (varTmp == 'L') {
                     tipo = 'Flotante';
-                } else if (varTmp == 'J' || varTmp == 'O' || varTmp == 'M') {
+                } else if (varTmp == 'J' || varTmp == 'F' || varTmp == 'K' || varTmp == 'O' || varTmp == 'M') {
                     if (textoA == 'VERDADERO' || textoA == 'FALSO')
                         tipo = 'Booleano';
                     else tipo = 'Identificador';
